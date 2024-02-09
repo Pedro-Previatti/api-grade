@@ -6,7 +6,7 @@ import com.ltp.apigrade.entity.Course;
 
 public interface CourseService {
     Course getCourse(Long id);
-    Course savCourse(Course course);
+    Course saveCourse(Course course);
     void deleteCourse(Long id);
     List<Course> getCourses();
 }
