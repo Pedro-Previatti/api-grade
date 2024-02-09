@@ -2,8 +2,11 @@ package com.ltp.apigrade.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.ltp.apigrade.entity.Course;
 
+@Service
 public class CourseServiceImpl implements CourseService {
     
     @Override
