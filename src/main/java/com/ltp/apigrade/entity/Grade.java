@@ -1,8 +1,11 @@
 package com.ltp.apigrade.entity;
 
+import com.ltp.apigrade.validation.Score;
+
 public class Grade {
     
     private Long id;
+    @Score
     private String score;
 
     public Long getId() {

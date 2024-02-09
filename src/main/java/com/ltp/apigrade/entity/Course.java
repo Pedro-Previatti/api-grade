@@ -1,10 +1,15 @@
 package com.ltp.apigrade.entity;
 
+import javax.validation.constraints.NotBlank;
+
 public class Course {
 
     private Long id;
+    @NotBlank(message = "Subject cannot be found")
     private String subject;
+    @NotBlank(message = "Course code cannot be blank")
     private String code;
+    @NotBlank(message = "Description cannot be blank")
     private String description;
 
     public Long getId() {

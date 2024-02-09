@@ -2,10 +2,15 @@ package com.ltp.apigrade.entity;
 
 import java.time.LocalDate;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
+
 public class Student {
     
     private Long id;
+    @NotBlank(message = "Name cannot be blank")
     private String name;
+    @Past(message = "The birth date must be in the past")
     private LocalDate birthDate;
 
     public Long getId() {
