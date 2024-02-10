@@ -25,6 +25,7 @@ public class Grade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
+    
     @Score
     @Column(name = "score", nullable = false)
     private String score;

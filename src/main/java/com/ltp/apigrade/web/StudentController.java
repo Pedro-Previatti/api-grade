@@ -21,28 +21,26 @@ import com.ltp.apigrade.service.StudentService;
 public class StudentController {
 
     @Autowired
-    StudentService service;
+    StudentService studentService;
 
     @GetMapping("/{id}")
     public ResponseEntity<Student> getStudent(@PathVariable Long id) {
-        return new ResponseEntity<>(service.getStudent(id), HttpStatus.OK);
+        return new ResponseEntity<>(studentService.getStudent(id), HttpStatus.OK);
     }
 
     @PostMapping
     public ResponseEntity<Student> saveStudent(@RequestBody Student student) {
-        return new ResponseEntity<>(service.saveStudent(student), HttpStatus.CREATED);
+        return new ResponseEntity<>(studentService.saveStudent(student), HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<HttpStatus> deleteStudent(@PathVariable Long id) {
-        service.deleteStudent(id);
+        studentService.deleteStudent(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<Student>> getStudents() {
-        return new ResponseEntity<>(service.getStudents(), HttpStatus.OK);
+        return new ResponseEntity<>(studentService.getStudents(), HttpStatus.OK);
     }
-
-
 }
