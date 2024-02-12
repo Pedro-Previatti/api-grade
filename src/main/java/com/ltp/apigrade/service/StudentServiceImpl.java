@@ -12,25 +12,25 @@ import com.ltp.apigrade.repository.StudentRepository;
 public class StudentServiceImpl implements StudentService {
     
     @Autowired
-    StudentRepository repository;
+    StudentRepository studentRepository;
 
     @Override
     public Student getStudent(Long id) {
-        return repository.findById(id).get();
+        return studentRepository.findById(id).get();
     }
     
     @Override
     public Student saveStudent(Student student) {
-        return repository.save(student);
+        return studentRepository.save(student);
     }
     
     @Override
     public void deleteStudent(Long id){
-        repository.deleteById(id);
+        studentRepository.deleteById(id);
     }
     
     @Override
     public List<Student> getStudents() {
-        return (List<Student>)repository.findAll();
+        return (List<Student>)studentRepository.findAll();
     }
 }

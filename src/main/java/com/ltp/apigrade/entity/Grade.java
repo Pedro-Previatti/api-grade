@@ -31,7 +31,7 @@ public class Grade {
     private String score;
 
     @ManyToOne(optional = false)
-    @JoinColumn(referencedColumnName = "id")
+    @JoinColumn(name = "student_id", referencedColumnName = "id")
     private Student student;
 
 }
