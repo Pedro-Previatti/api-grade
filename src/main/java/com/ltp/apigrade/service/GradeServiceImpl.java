@@ -2,7 +2,6 @@ package com.ltp.apigrade.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ltp.apigrade.entity.Grade;
@@ -10,13 +9,13 @@ import com.ltp.apigrade.entity.Student;
 import com.ltp.apigrade.repository.GradeRepository;
 import com.ltp.apigrade.repository.StudentRepository;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 @Service
 public class GradeServiceImpl implements GradeService {
     
-    @Autowired
     GradeRepository gradeRepository;
-
-    @Autowired
     StudentRepository studentRepository;
 
     @Override
