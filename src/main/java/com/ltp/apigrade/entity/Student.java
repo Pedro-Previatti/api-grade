@@ -43,5 +43,5 @@ public class Student {
 
     @JsonIgnore
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
-    private List<Grade> grade;
+    private List<Grade> grades;
 }
