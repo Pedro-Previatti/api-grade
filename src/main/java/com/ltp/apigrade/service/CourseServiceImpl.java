@@ -1,10 +1,12 @@
 package com.ltp.apigrade.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.ltp.apigrade.entity.Course;
+import com.ltp.apigrade.exception.CourseNotFoundException;
 import com.ltp.apigrade.repository.CourseRepository;
 
 import lombok.AllArgsConstructor;
@@ -17,7 +19,12 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public Course getCourse(Long id) {
-        return repository.findById(id).get();
+        Optional<Course> course = repository.findById(id);
+        if (course.isPresent()) {
+            return course.get();
+        } else {
+            throw new CourseNotFoundException(id);
+        }
     }
     
     @Override

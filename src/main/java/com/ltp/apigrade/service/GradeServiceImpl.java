@@ -1,12 +1,14 @@
 package com.ltp.apigrade.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.ltp.apigrade.entity.Course;
 import com.ltp.apigrade.entity.Grade;
 import com.ltp.apigrade.entity.Student;
+import com.ltp.apigrade.exception.GradeNotFoundException;
 import com.ltp.apigrade.repository.CourseRepository;
 import com.ltp.apigrade.repository.GradeRepository;
 import com.ltp.apigrade.repository.StudentRepository;
@@ -23,7 +25,12 @@ public class GradeServiceImpl implements GradeService {
 
     @Override
     public Grade getGrade(Long studentId, Long courseId) {
-        return gradeRepository.findByStudentIdAndCourseId(studentId, courseId);
+        Optional<Grade> grade = gradeRepository.findByStudentIdAndCourseId(studentId, courseId);
+        if (grade.isPresent()) {
+            return grade.get();
+        } else {
+            throw new GradeNotFoundException(studentId, courseId);
+        }
     }
 
     @Override
@@ -37,27 +44,33 @@ public class GradeServiceImpl implements GradeService {
 
     @Override
     public Grade updateGrade(String score, Long studentId, Long courseId) {
-        Grade grade = gradeRepository.findByStudentIdAndCourseId(studentId, courseId);
-        grade.setScore(score);
-        return gradeRepository.save(grade);
+        Optional<Grade> grade = gradeRepository.findByStudentIdAndCourseId(studentId, courseId);
+        if (grade.isPresent()) {
+            Grade unwrappedGrade = grade.get();
+            unwrappedGrade.setScore(score);
+            return gradeRepository.save(unwrappedGrade);    
+        } else {
+            throw new GradeNotFoundException(studentId, courseId);
+        }
     }
 
     @Override
-    public void deleteGrade(Long studentId, Long courseId)  {
+    public void deleteGrade(Long studentId, Long courseId) {
+        gradeRepository.deleteByStudentIdAndCourseId(studentId, courseId);
     }
 
     @Override
     public List<Grade> getStudentGrades(Long studentId) {
-        return null;
+        return gradeRepository.findByStudentId(studentId);
     }
     
     @Override
     public List<Grade> getCourseGrades(Long courseId) {
-        return null;
+        return gradeRepository.findByCourseId(courseId);
     }
     
     @Override
     public List<Grade> getAllGrades() {
-        return null;
+        return (List<Grade>) gradeRepository.findAll();
     }
 }
