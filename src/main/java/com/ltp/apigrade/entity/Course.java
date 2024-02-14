@@ -36,7 +36,7 @@ public class Course {
     
     @NonNull
     @NotBlank(message = "Course code cannot be blank")
-    @Column(name = "code", nullable = false)
+    @Column(name = "code", nullable = false, unique = true)
     private String code;
     
     @NonNull

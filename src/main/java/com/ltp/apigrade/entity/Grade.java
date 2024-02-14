@@ -8,13 +8,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
 import com.ltp.apigrade.validation.Score;
 
 import lombok.*;
 
 @Entity
-@Table(name = "grade")
+@Table(name = "grade", uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"student_id", "course_id"})
+})
 @Getter
 @Setter
 @AllArgsConstructor
