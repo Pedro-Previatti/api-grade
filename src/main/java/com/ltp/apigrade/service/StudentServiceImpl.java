@@ -2,9 +2,11 @@ package com.ltp.apigrade.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
+import com.ltp.apigrade.entity.Course;
 import com.ltp.apigrade.entity.Student;
 import com.ltp.apigrade.exception.StudentNotFoundException;
 import com.ltp.apigrade.repository.StudentRepository;
@@ -36,6 +38,11 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public List<Student> getStudents() {
         return (List<Student>)studentRepository.findAll();
+    }
+
+    public Set<Course> getEnrolledStudents(Long id) {
+        Student student = getStudent(id);
+        return student.getCourses();
     }
 
     static Student unwrapStudent(Optional<Student> entity, Long id) {

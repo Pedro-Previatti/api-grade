@@ -9,6 +9,7 @@ import com.ltp.apigrade.entity.Course;
 import com.ltp.apigrade.entity.Grade;
 import com.ltp.apigrade.entity.Student;
 import com.ltp.apigrade.exception.GradeNotFoundException;
+import com.ltp.apigrade.exception.StudentNotEnrolledException;
 import com.ltp.apigrade.repository.CourseRepository;
 import com.ltp.apigrade.repository.GradeRepository;
 import com.ltp.apigrade.repository.StudentRepository;
@@ -33,6 +34,7 @@ public class GradeServiceImpl implements GradeService {
     public Grade saveGrade(Grade grade, Long studentId, Long courseId) {
         Student student = StudentServiceImpl.unwrapStudent(studentRepository.findById(studentId), studentId);
         Course course = CourseServiceImpl.unwrapCourse(courseRepository.findById(courseId), courseId);
+        if (!student.getCourses().contains(course)) throw new StudentNotEnrolledException(studentId, courseId);
         grade.setStudent(student);
         grade.setCourse(course);
         return gradeRepository.save(grade);
