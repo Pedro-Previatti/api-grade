@@ -34,7 +34,7 @@ public class Course {
     private Long id;
     
     @NonNull
-    @NotBlank(message = "Subject cannot be found")
+    @NotBlank(message = "Subject cannot be blank")
     @Column(name = "subject", nullable = false)
     private String subject;
     
