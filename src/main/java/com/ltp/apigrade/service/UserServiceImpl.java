@@ -16,7 +16,7 @@ import lombok.AllArgsConstructor;
 public class UserServiceImpl implements UserService {
     
     private UserRepository userRepository;
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
+	private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Override
     public User getUser(Long id) {

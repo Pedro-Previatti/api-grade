@@ -22,29 +22,29 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.*;
 
-@Entity
-@Table(name = "student")
 @Getter
 @Setter
 @RequiredArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "student")
 public class Student {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    
-    @NonNull
+
     @NotBlank(message = "Name cannot be blank")
+    @NonNull
     @Column(name = "name", nullable = false)
     private String name;
-    
-    @NonNull
+
     @Past(message = "The birth date must be in the past")
+    @NonNull
     @Column(name = "birth_date", nullable = false)
     private LocalDate birthDate;
-
+    
     @JsonIgnore
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<Grade> grades;
@@ -57,4 +57,5 @@ public class Student {
         inverseJoinColumns = @JoinColumn(name = "course_id", referencedColumnName = "id")
     )
     private Set<Course> courses;
+
 }

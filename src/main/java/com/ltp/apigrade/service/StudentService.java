@@ -11,5 +11,5 @@ public interface StudentService {
     Student saveStudent(Student student);
     void deleteStudent(Long id);
     List<Student> getStudents();
-    Set<Course> getEnrolledStudents(Long id);
+    Set<Course> getEnrolledCourses(Long id);
 }

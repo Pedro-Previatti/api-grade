@@ -20,31 +20,30 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.*;
 
-@Entity
-@Table(name = "course")
 @Getter
 @Setter
 @RequiredArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "course")
 public class Course {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
     
-    @NonNull
     @NotBlank(message = "Subject cannot be blank")
+    @NonNull
     @Column(name = "subject", nullable = false)
     private String subject;
-    
-    @NonNull
+
     @NotBlank(message = "Course code cannot be blank")
-    @Column(name = "code", nullable = false, unique = true)
-    private String code;
-    
     @NonNull
+    @Column(name = "code", nullable = false)
+    private String code;
+
     @NotBlank(message = "Description cannot be blank")
+    @NonNull
     @Column(name = "description", nullable = false)
     private String description;
 
@@ -60,4 +59,5 @@ public class Course {
         inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id")
     )
     private Set<Student> students;
+
 }

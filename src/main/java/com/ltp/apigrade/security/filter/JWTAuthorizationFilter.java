@@ -20,12 +20,12 @@ import com.ltp.apigrade.security.SecurityConstants;
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
     
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
-            throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String header = request.getHeader("Authorization");
-        
+
         if (header == null || !header.startsWith(SecurityConstants.BEARER)) {
             filterChain.doFilter(request, response);
+            return;
         }
 
         String token = header.replace(SecurityConstants.BEARER, "");
@@ -33,7 +33,7 @@ public class JWTAuthorizationFilter extends OncePerRequestFilter {
             .build()
             .verify(token)
             .getSubject();
-        
+
         Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, Arrays.asList());
         SecurityContextHolder.getContext().setAuthentication(authentication);
         filterChain.doFilter(request, response);

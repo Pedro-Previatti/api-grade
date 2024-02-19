@@ -14,25 +14,28 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@Table(name = "users")
 @Getter
 @Setter
 @RequiredArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "users")
 public class User {
-    
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
-    @NotBlank(message = "username cannot be blank")
-    @NonNull
-    @Column(nullable = false, unique = true)
-    private String username;
+	@NotBlank(message =  "username cannot be blank")
+	@NonNull
+	@Column(nullable = false, unique = true)
+	private String username;
 
-    @NotBlank(message = "username cannot be blank")
+	@NotBlank(message =  "password cannot be blank")
     @NonNull
-    @Column(nullable = false)
-    private String password;
+	@Column(nullable = false)
+	private String password;
+
+
+
 }

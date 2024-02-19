@@ -14,21 +14,21 @@ import com.ltp.apigrade.validation.Score;
 
 import lombok.*;
 
-@Entity
-@Table(name = "grade", uniqueConstraints = {
-    @UniqueConstraint(columnNames = {"student_id", "course_id"})
-})
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "grade", uniqueConstraints={
+    @UniqueConstraint(columnNames = {"student_id", "course_id"})
+}) 
 public class Grade {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    
+
     @Score
     @Column(name = "score", nullable = false)
     private String score;
@@ -40,4 +40,5 @@ public class Grade {
     @ManyToOne(optional = false)
     @JoinColumn(name = "course_id", referencedColumnName = "id")
     private Course course;
+    
 }
