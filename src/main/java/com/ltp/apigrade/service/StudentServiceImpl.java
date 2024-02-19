@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ltp.apigrade.entity.Course;
 import com.ltp.apigrade.entity.Student;
-import com.ltp.apigrade.exception.StudentNotFoundException;
+import com.ltp.apigrade.exception.EntityNotFoundException;
 import com.ltp.apigrade.repository.StudentRepository;
 
 import lombok.AllArgsConstructor;
@@ -47,6 +47,6 @@ public class StudentServiceImpl implements StudentService {
 
     static Student unwrapStudent(Optional<Student> entity, Long id) {
         if (entity.isPresent()) return entity.get();
-        else throw new StudentNotFoundException(id);
+        else throw new EntityNotFoundException(id, Student.class);
     }
 }
