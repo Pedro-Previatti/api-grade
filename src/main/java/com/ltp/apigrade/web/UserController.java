@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ltp.apigrade.entity.User;
 import com.ltp.apigrade.service.UserService;
 
 import lombok.AllArgsConstructor;
@@ -20,7 +21,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping("/user")
 public class UserController {
     
-        UserService userService;
+	UserService userService;
 
 	@GetMapping("/{id}")
 	public ResponseEntity<User> findById(@PathVariable Long id) {
